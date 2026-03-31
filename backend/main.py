@@ -15,6 +15,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/version")
+def get_version():
+    return {"version": "v1.1"} # CD 배포 확인용 버전
+
+@app.get("/filters")
+def get_filters():
+    return [
+        {"id": "grayscale", "name": "Grayscale"},
+        {"id": "blur", "name": "Blur"},
+        {"id": "gaussian_blur", "name": "Gaussian Blur"},
+        {"id": "invert", "name": "Invert (색상 반전)"},
+        {"id": "sepia", "name": "Sepia (세피아)"},
+        {"id": "blue_future", "name": "파란미래 (Blue Future)"},
+        {"id": "red_hell", "name": "빨간지옥 (Red Hell)"},
+        {"id": "green_naver", "name": "네이버 그린 (Green Naver)"}
+    ]
+
 @app.post("/filter")
 async def apply_filter(
     type: str = Query(..., description="지원 필터: blur, gaussian_blur, grayscale, invert, sepia, blue_future, red_hell, green_naver"),

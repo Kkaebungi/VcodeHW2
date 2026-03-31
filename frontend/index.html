@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Image Filter</h1>
+        <h1>Image Filter <span id="appVersion" style="font-size: 16px; color: var(--text-secondary); margin-left: 10px;"></span></h1>
         <p class="subtitle">Upload, filter, and download your images</p>
 
         <!-- 이미지 업로드 -->
@@ -22,14 +22,7 @@
         <div class="filter-section">
             <label>Select Filter:</label>
             <select id="filterType">
-                <option value="grayscale">Grayscale</option>
-                <option value="blur">Blur</option>
-                <option value="gaussian_blur">Gaussian Blur</option>
-                <option value="invert">Invert (색상 반전)</option>
-                <option value="sepia">Sepia (세피아)</option>
-                <option value="blue_future">파란미래 (Blue Future)</option>
-                <option value="red_hell">빨간지옥 (Red Hell)</option>
-                <option value="green_naver">네이버 그린 (Green Naver)</option>
+                <option value="" disabled selected>Loading filters...</option>
             </select>
             <button id="applyBtn" class="action-btn" disabled>Apply Filter</button>
         </div>

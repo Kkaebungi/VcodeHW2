@@ -13,6 +13,28 @@ let blobUrl = null;
 // 백엔드 API 주소 (동일한 docker-compose 실행 기준 로컬호스트 매핑)
 const API_URL = 'http://localhost:8124';
 
+// 페이지 로드 시 서버에서 버전과 필터 목록을 동기화
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const versionRes = await fetch(`${API_URL}/version`);
+        const versionData = await versionRes.json();
+        document.getElementById('appVersion').textContent = `(${versionData.version})`;
+
+        const filtersRes = await fetch(`${API_URL}/filters`);
+        const filters = await filtersRes.json();
+        
+        filterType.innerHTML = '';
+        filters.forEach(f => {
+            const option = document.createElement('option');
+            option.value = f.id;
+            option.textContent = f.name;
+            filterType.appendChild(option);
+        });
+    } catch (e) {
+        console.error("Failed to load initial dynamic data", e);
+    }
+});
+
 imageInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) {
         selectedFile = e.target.files[0];
