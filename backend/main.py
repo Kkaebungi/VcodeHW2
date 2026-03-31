@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.get("/version")
 def get_version():
-    return {"version": "v1.1"} # CD 배포 확인용 버전
+    return {"version": "v2.1"} # 업데이트된 버전 정보
 
 @app.get("/filters")
 def get_filters():
@@ -29,12 +29,13 @@ def get_filters():
         {"id": "sepia", "name": "Sepia (세피아)"},
         {"id": "blue_future", "name": "파란미래 (Blue Future)"},
         {"id": "red_hell", "name": "빨간지옥 (Red Hell)"},
-        {"id": "green_naver", "name": "네이버 그린 (Green Naver)"}
+        {"id": "green_naver", "name": "네이버 그린 (Green Naver)"},
+        {"id": "pink_calc", "name": "미적분홍 (Pink Calc)"}
     ]
 
 @app.post("/filter")
 async def apply_filter(
-    type: str = Query(..., description="지원 필터: blur, gaussian_blur, grayscale, invert, sepia, blue_future, red_hell, green_naver"),
+    type: str = Query(..., description="지원 필터: blur, gaussian_blur, grayscale, invert, sepia, blue_future, red_hell, green_naver, pink_calc"),
     image: UploadFile = File(...)
 ):
     # 1. 지원하는 이미지 포맷 확인
@@ -80,6 +81,14 @@ async def apply_filter(
                 0.0, 0.0, 0.3, 0
             )
             filtered_image = pil_image.convert("RGB", green_matrix)
+        elif type == "pink_calc":
+            # 미적분홍 톤 (Red 채널은 강화하고, Blue는 약간 유지, Green은 억제하여 핑크톤 강조)
+            pink_matrix = (
+                1.3, 0.0, 0.0, 0,
+                0.0, 0.3, 0.0, 0,
+                0.0, 0.0, 0.8, 0
+            )
+            filtered_image = pil_image.convert("RGB", pink_matrix)
         else:
             raise HTTPException(status_code=400, detail="Invalid filter type")
 
