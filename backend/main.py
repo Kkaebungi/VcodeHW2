@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.get("/version")
 def get_version():
-    return {"version": "v3.1"} # 화이트/블랙/레드 테마 업데이트 버전
+    return {"version": "v4.11"} # 고양이 마스코트가 추가된 v4.11 업데이트
 
 @app.get("/filters")
 def get_filters():
