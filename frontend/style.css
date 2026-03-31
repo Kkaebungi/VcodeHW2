@@ -1,10 +1,9 @@
 :root {
-    /* 기존 다크 테마 복구 및 레드 포인트 컬러 유지 */
-    --bg-color: #121212;
-    --card-bg: #1e1e1e;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --accent-color: #d32f2f; /* Strong Red */
+    --bg-color: #ffffff;
+    --card-bg: #ffffff;
+    --text-primary: #121212;
+    --text-secondary: #666666;
+    --accent-color: #d32f2f; /* Red Point Color */
     --accent-hover: #b71c1c;
 }
 
@@ -23,8 +22,8 @@ body {
     background-color: var(--card-bg);
     padding: 40px;
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    border: 1px solid #333333;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); /* 부드러운 그림자 */
+    border: 1px solid #eeeeee;
     text-align: center;
     max-width: 500px;
     width: 100%;
@@ -61,13 +60,13 @@ h1 {
 }
 
 .upload-btn:hover {
-    background-color: rgba(211, 47, 47, 0.1); 
+    background-color: rgba(211, 47, 47, 0.05); /* 레드 틴트 호버 */
 }
 
 select {
     background-color: var(--bg-color);
     color: var(--text-primary);
-    border: 1px solid #444444;
+    border: 1px solid #cccccc;
     padding: 10px;
     border-radius: 8px;
     width: 200px;
@@ -95,8 +94,8 @@ select:focus {
 }
 
 .action-btn:disabled {
-    background-color: #555555;
-    color: #888888;
+    background-color: #e0e0e0;
+    color: #999999;
     cursor: not-allowed;
 }
 
@@ -113,7 +112,7 @@ select:focus {
 
 .preview-section {
     margin-top: 30px;
-    border-top: 1px solid #333333;
+    border-top: 1px solid #eeeeee;
     padding-top: 25px;
 }
 
@@ -121,7 +120,7 @@ select:focus {
     max-width: 100%;
     border-radius: 8px;
     margin-bottom: 15px;
-    border: 1px solid #222222;
+    border: 1px solid #dddddd;
 }
 
 .loading {
