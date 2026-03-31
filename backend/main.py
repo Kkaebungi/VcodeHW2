@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.get("/version")
 def get_version():
-    return {"version": "v2.1"} # 업데이트된 버전 정보
+    return {"version": "v3.1"} # 화이트/블랙/레드 테마 업데이트 버전
 
 @app.get("/filters")
 def get_filters():
