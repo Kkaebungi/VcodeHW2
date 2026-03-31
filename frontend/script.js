@@ -13,8 +13,26 @@ let blobUrl = null;
 // 백엔드 API 주소 (동일한 docker-compose 실행 기준 로컬호스트 매핑)
 const API_URL = 'http://localhost:8124';
 
+// 말풍선 제어 함수
+function showBubble(text) {
+    const catBubble = document.getElementById('catBubble');
+    if (catBubble) {
+        if (text) catBubble.textContent = text;
+        catBubble.classList.add('show');
+        setTimeout(() => catBubble.classList.remove('show'), 3000);
+    }
+}
+
+// 고양이 아이콘 클릭 시 인터랙션 (추가 재미 요소)
+const catMascot = document.getElementById('catMascot');
+if (catMascot) {
+    catMascot.addEventListener('click', () => showBubble("야옹! 예쁜 필터를 골라봐!"));
+}
+
 // 페이지 로드 시 서버에서 버전과 필터 목록을 동기화
 document.addEventListener('DOMContentLoaded', async () => {
+    // 요구사항: 페이지 최초 로드 시 말풍선 표시
+    showBubble("안녕하세요, 이미지를 수정해드려요!");
     try {
         const versionRes = await fetch(`${API_URL}/version`);
         const versionData = await versionRes.json();
@@ -42,6 +60,8 @@ imageInput.addEventListener('change', (e) => {
         applyBtn.disabled = false;
         previewSection.style.display = 'none';
         if (blobUrl) URL.revokeObjectURL(blobUrl);
+        // 요구사항: 이미지 업로드 시 나타남
+        showBubble("멋진 사진이에요! 이제 필터를 적용해 보세요.");
     }
 });
 

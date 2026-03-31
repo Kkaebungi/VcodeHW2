@@ -1,6 +1,6 @@
 :root {
     --bg-color: #ffffff;
-    --card-bg: #ffffff;
+    --card-bg: #f9f9f9;
     --text-primary: #121212;
     --text-secondary: #666666;
     --accent-color: #d32f2f; /* Red Point Color */
@@ -127,4 +127,43 @@ select:focus {
     color: var(--accent-color);
     margin-top: 15px;
     font-weight: bold;
+}
+
+/* --- [추가된 고양이 말풍선 애니메이션 및 스타일] --- */
+.speech-bubble {
+    position: absolute;
+    bottom: 130%; /* 고양이 아이콘 상단 위에 띄움 */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--accent-color);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+}
+
+/* 말풍선 아래쪽 꼬리 부분 */
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--accent-color) transparent transparent transparent;
+}
+
+/* 말풍선 활성화 클래스 */
+.speech-bubble.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
 }

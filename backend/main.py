@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.get("/version")
 def get_version():
-    return {"version": "v5.12"} # 빨간 고양이 마스코트가 반영된 v5.12 업데이트
+    return {"version": "v6.11"} # 고양이 말풍선 인터랙션이 추가된 v6.11 업데이트
 
 @app.get("/filters")
 def get_filters():
