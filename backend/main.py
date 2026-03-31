@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.post("/filter")
 async def apply_filter(
-    type: str = Query(..., description="지원 필터: blur, gaussian_blur, grayscale, invert, sepia, blue_future, red_hell"),
+    type: str = Query(..., description="지원 필터: blur, gaussian_blur, grayscale, invert, sepia, blue_future, red_hell, green_naver"),
     image: UploadFile = File(...)
 ):
     # 1. 지원하는 이미지 포맷 확인
@@ -55,6 +55,14 @@ async def apply_filter(
             # 빨간지옥 톤 (흑백화 후 붉은 계열로 Colorize)
             grayscale = ImageOps.grayscale(pil_image)
             filtered_image = ImageOps.colorize(grayscale, black="#330000", white="#ff0000")
+        elif type == "green_naver":
+            # 네이버 그린 톤 (녹색 채널 강화, 적/청 채널 약화)
+            green_matrix = (
+                0.3, 0.0, 0.0, 0,
+                0.0, 1.3, 0.0, 0,
+                0.0, 0.0, 0.3, 0
+            )
+            filtered_image = pil_image.convert("RGB", green_matrix)
         else:
             raise HTTPException(status_code=400, detail="Invalid filter type")
 
