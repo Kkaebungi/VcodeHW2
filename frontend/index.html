@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filtering Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Image Filter</h1>
+        <p class="subtitle">Upload, filter, and download your images</p>
+
+        <!-- 이미지 업로드 -->
+        <div class="upload-section">
+            <input type="file" id="imageInput" accept="image/jpeg, image/png, image/webp" hidden>
+            <label for="imageInput" class="upload-btn">Choose Image</label>
+            <span id="fileName">No file selected</span>
+        </div>
+
+        <!-- 필터 선택 -->
+        <div class="filter-section">
+            <label>Select Filter:</label>
+            <select id="filterType">
+                <option value="grayscale">Grayscale</option>
+                <option value="blur">Blur</option>
+                <option value="gaussian_blur">Gaussian Blur</option>
+                <option value="invert">Invert (색상 반전)</option>
+                <option value="sepia">Sepia (세피아)</option>
+                <option value="blue_future">파란미래 (Blue Future)</option>
+            </select>
+            <button id="applyBtn" class="action-btn" disabled>Apply Filter</button>
+        </div>
+
+        <!-- 결과 확인 및 다운로드 -->
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <div class="image-container">
+                <img id="resultImage" src="" alt="Filtered Result">
+            </div>
+            <button id="downloadBtn" class="action-btn outline">Download Image</button>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">Processing...</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

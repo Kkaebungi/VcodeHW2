@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: filter-backend
+    ports:
+      - "8124:8000"
+    environment:
+      - APP_ENV=${APP_ENV:-production}
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: filter-frontend
+    ports:
+      - "8123:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
