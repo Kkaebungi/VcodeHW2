@@ -10,8 +10,8 @@ const loading = document.getElementById('loading');
 let selectedFile = null;
 let blobUrl = null;
 
-// 백엔드 API 주소 (동일한 docker-compose 실행 기준 로컬호스트 매핑)
-const API_URL = 'http://localhost:8124';
+// 백엔드 API 주소 (현재 접속한 호스트명의 8124 포트 사용)
+const API_URL = `${window.location.protocol}//${window.location.hostname}:8124`;
 
 // 말풍선 제어 함수
 function showBubble(text) {

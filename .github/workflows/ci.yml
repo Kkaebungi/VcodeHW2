@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -42,3 +42,9 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/image-filter-frontend:latest
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/image-filter-frontend:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/image-filter-frontend:buildcache,mode=max
+
+      - name: Deploy to Self-hosted
+        run: |
+          # 기존 로컬에서 띄워진 컨테이너들과 포트 충돌을 피하기 위해 먼저 다운시킵니다 (옵션)
+          docker compose -p image-filtering-service down || true
+          docker compose -p image-filtering-service up -d --build
